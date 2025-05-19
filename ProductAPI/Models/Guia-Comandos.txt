@@ -1,0 +1,82 @@
+- dotnet new webapi --name "ProductAPI"
+- dotnet build
+- dotnet run
+
+Root Folder
+    - ProductAPI (ProductAPI.csproj)
+        - Controllers
+
+- dotnet xunit --name "ProductAPI.Tests"
+
+Root Folder
+    - ProductAPI (ProductAPI.csproj)
+        - Controllers
+    - ProductAPI.Tests
+
+- dotnet add reference "../ProductAPI/ProductAPI.csproj"
+
+Root Folder
+    - ProductAPI (ProductAPI.csproj)
+        - Controllers
+            - ProductController.cs
+    - ProductAPI.Tests
+        - Controllers
+            - ProductController
+                - GetProductTests.cs
+                    [Fact] - GetAll...
+                    [Fact] - GetBy...
+                - CreateProductTests.cs
+                    [Fact]
+                    [Fact]
+                    .....
+                - UpdateProductTests.cs
+                    [Fact]
+                    [Fact]
+                    ....
+                    ...
+
+Root Folder
+    - ProductAPI (ProductAPI.csproj)
+        - Controllers
+            - ProductController.cs => Se volvio grande... y se refactorizo
+        - Services
+            - IProductService.cs
+            - ProductService.cs
+        - Models
+            - Product.cs
+    - ProductAPI.Tests
+        - Controllers
+            - ProductController
+                - GetProductTests.cs
+                    [Fact] - GetAll... // Stub
+                    [Fact] - GetBy... // Stub
+                - CreateProductTests.cs
+                    [Fact] - ..... Stub peroooooo se complica, se convierte un INTEGRATION TESTS
+                    [Fact]
+                    .....
+                - UpdateProductTests.cs
+                    [Fact]
+                    [Fact]
+                    ....
+                    ...
+            - Utils
+                - ProductUtils.cs
+            - Stubs
+                - ProductServiceStub.cs // es lo moderno??
+    - ProductAPI.Test.Integration
+
+- dotnet add package moq
+
+// REPORTES
+- dotnet add package coverlet.collector
+- dotnet add package reportgenerator
+
+- dotnet test --collect:"XPlat Code Coverage"
+
+
+- dotnet reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage-report -reporttypes:Html
+OR
+- dotnet tool install --global dotnet-reportgenerator-globaltool
+reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage-report -reporttypes:Html
+
+
